@@ -22,24 +22,24 @@ class AppFixtures extends Fixture
         //$user=new User();
         $user=new Client();
         $user->setLogin('client@gmail.com');
-        $user->setNom('thiam');
-        $user->setPrenom('seydou');
-        $user->setAdresse("mbao");
-        $user->setTelephone("778339159");
+        $user->setNom('Sakho');
+        $user->setPrenom('Dieyna');
+        $user->setAdresse("Dakar");
+        $user->setTelephone("762208564");
         $hashedPassword = $this->passwordHasher->hashPassword(
         $user,
-        'passer'
+        'cas'
         );
         $user->setPassword($hashedPassword);
         $user->setRoles(['ROLE_CLIENT']);
         //$user1=new User();
         $user1=new Gestionnaire();
         $user1->setLogin('gestionnaire@gmail.com');
-        $user1->setNom('soumare');
-        $user1->setPrenom('seynabou');
+        $user1->setNom('Sakho');
+        $user1->setPrenom('CAS');
         $hashedPassword = $this->passwordHasher->hashPassword(
         $user1,
-        'passer'
+        'cas'
         );
         $user1->setPassword($hashedPassword);
         $user1->setRoles(['ROLE_GESTIONNAIRE']);
