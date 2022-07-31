@@ -40,7 +40,7 @@ class Produit
     protected $etat="disponible";
 
     #[ORM\Column(type: 'text')]
-    #[Groups(["burger:read:simple","burger:read:all","write","detail"])] 
+    #[Groups(["burger:read:simple","burger:read:all","write","detail","catalogue:read:simple"])] 
     #[Assert\NotBlank(message:'le burger doit avoir une description')]
     protected $description;
 
