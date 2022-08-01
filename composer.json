@@ -12,7 +12,6 @@
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.12",
-        "lexik/jwt-authentication-bundle": "^2.16",
         "nelmio/cors-bundle": "^2.2",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.6",
@@ -76,11 +75,9 @@
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "requirements-checker": "script",
-            "lexik:jwt:generate-keypair": "symfony-cmd"
+            "requirements-checker": "script"
         },
         "compile": [
-            "@php bin/console lexik:jwt:generate-keypair --overwrite --quiet --env prod"
         ],
         "post-update-cmd": [
             "@auto-scripts"
