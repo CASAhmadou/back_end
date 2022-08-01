@@ -79,7 +79,6 @@
             "requirements-checker": "script"
         },
         "compile": [
-            "php bin/console d:m:mi"
         ],
         "post-update-cmd": [
             "@auto-scripts"
