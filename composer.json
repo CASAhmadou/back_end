@@ -79,6 +79,7 @@
             "requirements-checker": "script"
         },
         "compile": [
+            
         ],
         "post-update-cmd": [
             "@auto-scripts"
