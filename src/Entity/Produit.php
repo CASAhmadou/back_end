@@ -117,8 +117,10 @@ class Produit
     {
         if(is_resource($this->image)){
             return base64_encode(stream_get_contents($this->image));
+        }elseif($this->image){
+            return base64_encode($this->image);
         }
-       return base64_encode($this->image);
+        return null;
     }
 
     public function setImage($image): self
