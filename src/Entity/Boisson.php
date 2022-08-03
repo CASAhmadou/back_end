@@ -20,10 +20,14 @@ use Symfony\Component\Validator\Constraints as Assert;
         'normalization_context' => ['groups' => ['burger:read:simple']],
         ]
     ,"post"=>[
-        'denormalization_context' => ['groups' => ['write']],
+        'denormalization_context' => ['groups' => ['write:boisson']],
         'normalization_context' => ['groups' => ['burger:read:all']],
         "security"=>"is_granted('ROLE_GESTIONNAIRE')",
         "security_message"=>"Vous n'avez pas access à cette Ressource",
+        'input_formats' => [
+            'multipart' => ['multipart/form-data'],
+        ]
+        
     ]],
     itemOperations:["put"=>[
         'denormalization_context' => ['groups' => ['write']],
@@ -50,9 +54,9 @@ class Boisson extends Produit
     private $gestionnaire;
 
     #[ORM\OneToMany(mappedBy: 'boisson', targetEntity: BoissonTailleBoisson::class,cascade:['persist'])]
-    #[Groups(["burger:read:simple","burger:read:all","write"])]
+    #[Groups(["burger:read:simple","burger:read:all","write:boisson"])]
     #[Assert\Valid]
-    #[Assert\Count(min:1,minMessage:'taille obligatoire')]
+    // #[Assert\Count(min:1,minMessage:'taille obligatoire')]
     private $boissonTailleBoissons;
 
 

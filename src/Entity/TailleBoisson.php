@@ -45,10 +45,10 @@ class TailleBoisson
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["write","com:write","complement:read:simple","detail"])]
+    #[Groups(["menu:write","write","com:write","complement:read:simple","detail","write:boisson"])]
     private $id;
 
-    #[ORM\Column(type: 'float')]
+    #[ORM\Column(type: 'integer')]
     #[Groups(["burger:read:simple","burger:read:all","write","complement:read:simple","detail"])]
     private $prix;
 

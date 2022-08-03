@@ -23,10 +23,13 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
         ]
     ,"post"=>[
         'method'=>'post',
-        'denormalization_context' => ['groups' => ['write']],
+        'denormalization_context' => ['groups' => ['menu:write']],
         'normalization_context' => ['groups' => ['burger:read:all']],
         "security"=>"is_granted('ROLE_GESTIONNAIRE')",
-        "security_message"=>"Vous n'avez pas access à cette Ressource"
+        "security_message"=>"Vous n'avez pas access à cette Ressource",
+        'input_formats' => [
+            'multipart' => ['multipart/form-data'],
+        ]
     ]],
     itemOperations:["put"=>[
         "security"=>"is_granted('ROLE_GESTIONNAIRE')",
@@ -56,18 +59,18 @@ class Menu extends Produit
     private $gestionnaire;
 
     #[ORM\OneToMany(mappedBy: 'menu', targetEntity: MenuBurger::class,cascade:['persist'])]
-    #[Groups(["burger:read:simple","burger:read:all","write","detail"])]
+    #[Groups(["burger:read:simple","burger:read:all","write","detail","menu:write"])]
     #[Assert\Count(min:1,minMessage:'le menu doit avoir minimum un burger')]
     #[Assert\Valid]
     private $menuBurgers;
 
     #[ORM\OneToMany(mappedBy: 'menu', targetEntity: MenuPortionFrite::class,cascade:['persist'])]
-    #[Groups(["burger:read:simple","burger:read:all","write","detail"])]
+    #[Groups(["burger:read:simple","burger:read:all","write","detail","menu:write"])]
     #[Assert\Valid]
     private $menuPortionFrites;
 
     #[ORM\OneToMany(mappedBy: 'menu', targetEntity: MenuTailleBoisson::class,cascade:['persist'])]
-    #[Groups(["burger:read:simple","burger:read:all","write","detail"])]
+    #[Groups(["burger:read:simple","burger:read:all","write","detail","menu:write"])]
     #[Assert\Valid]
     private $menuTailleBoissons;
 

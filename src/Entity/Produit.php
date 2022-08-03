@@ -22,17 +22,17 @@ class Produit
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["burger:read:simple","burger:read:all","write","com:write","catalogue:read:simple","complement:read:simple","detail"])]
+    #[Groups(["burger:read:simple","burger:read:all","write","write:boisson","com:write","catalogue:read:simple","complement:read:simple","detail","menu:write"])]
     protected $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank(message:'le burger ne doit pas etre vide')]
-    #[Groups(["burger:read:simple","burger:read:all","write","catalogue:read:simple","complement:read:simple","detail"])]
+    #[Groups(["burger:read:simple","menu:write","burger:read:all","write","write:boisson","catalogue:read:simple","complement:read:simple","detail"])]
     protected $nom;
 
 
-    #[ORM\Column(type: 'float')]
-    #[Groups(["burger:read:simple","burger:read:all","write","catalogue:read:simple","complement:read:simple","detail"])]
+    #[ORM\Column(type: 'float',nullable: true)]
+    #[Groups(["menu:write","burger:read:simple","burger:read:all","write","catalogue:read:simple","complement:read:simple","detail"])]
     // #[Assert\Positive(message: 'le prix ne doit pas etre negatif')]
     protected $prix;
 
@@ -40,20 +40,20 @@ class Produit
     protected $etat="disponible";
 
     #[ORM\Column(type: 'text')]
-    #[Groups(["burger:read:simple","burger:read:all","write","detail","catalogue:read:simple"])] 
+    #[Groups(["menu:write","burger:read:simple","burger:read:all","write","write:boisson","detail","catalogue:read:simple"])] 
     #[Assert\NotBlank(message:'le burger doit avoir une description')]
     protected $description;
 
     #[ORM\Column(type: 'blob', nullable: true)]
-    #[Groups(["write","burger:read:simple","burger:read:all","catalogue:read:simple","complement:read:simple","detail"])]
+    #[Groups(["write","write:boisson","burger:read:simple","burger:read:all","catalogue:read:simple","complement:read:simple","detail"])]
     protected $image;
 
     // #[ORM\Column(type: 'blob')]
-    #[Groups(["write"])]
+    #[Groups(["write","write:boisson","menu:write"])]
     protected $imageBlob;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(["burger:read:simple","burger:read:all","catalogue:read:simple","detail"])] 
+    #[Groups(["menu:write","burger:read:simple","burger:read:all","catalogue:read:simple","detail"])] 
     protected ?string $type = null;
 
     public function __construct()
@@ -121,6 +121,8 @@ class Produit
             return base64_encode($this->image);
         }
         return null;
+
+        
     }
 
     public function setImage($image): self

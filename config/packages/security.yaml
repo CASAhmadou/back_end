@@ -16,10 +16,13 @@ security:
             json_login:
                 check_path: /api/login_check
                 username_path: login
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
         api:
             pattern:   ^/api
             stateless: true
+            jwt: ~
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -33,15 +36,22 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api/register, roles: PUBLIC_ACCESS }
         - { path: ^/api$, roles: PUBLIC_ACCESS }
-        - { path: ^/api/register,roles: PUBLIC_ACCESS }
-        - { path: ^/api/burgers,roles: PUBLIC_ACCESS }
-        - { path: ^/api/boissons,roles: PUBLIC_ACCESS }
-        - { path: ^/api/menus,roles: PUBLIC_ACCESS }
-        - { path: ^/api/catalogues,roles: PUBLIC_ACCESS }
-        - { path: ^/api/complements,roles: PUBLIC_ACCESS }
-        - { path: ^/api/portion_frites,roles: PUBLIC_ACCESS }
-        - { path: ^/api/details,roles: PUBLIC_ACCESS }
+        - { path: ^/api/boissons, roles: PUBLIC_ACCESS }
+        - { path: ^/api/boisson_tailles, roles: PUBLIC_ACCESS }
+        - { path: ^/api/burgers, roles: PUBLIC_ACCESS }
+        - { path: ^/api/catalogues, roles: PUBLIC_ACCESS }
+        - { path: ^/api/clients, roles: PUBLIC_ACCESS }
+        - { path: ^/api/commandes, roles: PUBLIC_ACCESS }
+        - { path: ^/api/complements, roles: PUBLIC_ACCESS }
+        - { path: ^/api/livraisons, roles: PUBLIC_ACCESS }
+        - { path: ^/api/livreurs, roles: PUBLIC_ACCESS }
+        - { path: ^/api/menus, roles: PUBLIC_ACCESS }
+        - { path: ^/api/portion_frites, roles: PUBLIC_ACCESS }
+        - { path: ^/api/produitCommandes, roles: PUBLIC_ACCESS }
+        - { path: ^/api/quartiers, roles: PUBLIC_ACCESS }
+        - { path: ^/api/zones, roles: PUBLIC_ACCESS }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:

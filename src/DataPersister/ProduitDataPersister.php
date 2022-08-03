@@ -34,7 +34,6 @@ class ProduitDataPersister implements DataPersisterInterface
         $im = $this->file->encode();
         $data->setImage($im);      
             if($data instanceof Menu){
-                //dd($data->getMenuBurgers()[0]->getBurger()->getId());
               $data->setPrix($this->prixMenu->getPrix($data));
             }
         

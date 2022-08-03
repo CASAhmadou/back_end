@@ -22,7 +22,7 @@ class Mailer {
     {
       //  $user = new User();
         $email = (new TemplatedEmail())
-            ->from('nabousoum@brasilburger.sn')
+            ->from('ncas@brasilburger.sn')
             ->to(new Address($email))
             ->subject('BRASIL BURGER: activez votre compte pour profiter des meilleurs burgers de dakar')
 
