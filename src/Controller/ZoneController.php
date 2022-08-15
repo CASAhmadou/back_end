@@ -19,7 +19,6 @@ class ZoneController extends AbstractController
         $zone = new Zone();
         $data = $request->getContent();
         $data = json_decode($data,true);
-        //dd($data["quartiers"]);
         $quartiers = $data["quartiers"];
 
         $zone->setLibelle($data["libelle"]);

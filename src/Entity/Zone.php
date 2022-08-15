@@ -22,7 +22,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
         'method' => 'get',
         'status' => Response::HTTP_OK,
         'normalization_context' => ['groups' => ['zone:read:simple']],
-        "security" => "is_granted('ZONE_ALL',_api_resource_class)", 
+        // "security" => "is_granted('ZONE_ALL',_api_resource_class)", 
         ]
     ,"post"=>[
         "security_post_denormalize" => "is_granted('ZONE_CREATE', object)" ,
@@ -65,11 +65,11 @@ class Zone
     #[Groups(["zone:read:all","zone:write","zone:read:simple","quartier:read:simple","quartier:read:all"])]
     private $prix;
 
-    #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Commande::class)]
+    #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Commande::class, cascade:['persist'])]
     #[ApiSubresource]
     private $commandes;
 
-    #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Quartier::class)]
+    #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Quartier::class, cascade:['persist'])]
     #[Groups(["zone:read:all","zone:write","zone:read:simple"])]
     #[Assert\Count(min:1,minMessage:'la zone doit avoir minimum un quartier')]
     private $quartiers;

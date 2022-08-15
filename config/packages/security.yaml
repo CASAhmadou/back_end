@@ -45,6 +45,7 @@ security:
         - { path: ^/api/clients, roles: PUBLIC_ACCESS }
         - { path: ^/api/commandes, roles: PUBLIC_ACCESS }
         - { path: ^/api/complements, roles: PUBLIC_ACCESS }
+        - { path: ^/api/details, roles: PUBLIC_ACCESS }
         - { path: ^/api/livraisons, roles: PUBLIC_ACCESS }
         - { path: ^/api/livreurs, roles: PUBLIC_ACCESS }
         - { path: ^/api/menus, roles: PUBLIC_ACCESS }

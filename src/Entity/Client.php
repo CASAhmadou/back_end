@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -35,6 +36,7 @@ class Client extends User
     private $telephone;
 
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Commande::class)]
+    #[ApiSubresource]
     private $commandes;
 
     public function __construct()
