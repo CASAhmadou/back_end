@@ -25,7 +25,7 @@ class MenuCommande
     #[ORM\Column(type: 'float')]
     private $prix;
 
-    #[ORM\ManyToOne(targetEntity: Menu::class, inversedBy: 'menuCommandes')]
+    #[ORM\ManyToOne(targetEntity: Menu::class, inversedBy: 'menuCommandes', cascade:['persist'])]
     #[Groups(["com:write","com:read:simple"])]
     private $menu;
 

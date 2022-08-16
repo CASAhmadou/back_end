@@ -35,9 +35,16 @@ class CommandeDataPersister implements DataPersisterInterface
     */
     public function persist($data)
     {
+        $menuCommandes = $data->getMenuCommandes();
+        foreach ($menuCommandes as $menuCommande) {
+            foreach ($menuCommande->getMenu()->getCommandeMenuBoissonTailles() as $commandemenutaille){
+                $commandemenutaille->setCommandes($data);
+            }
+        }
         $data->setNumeroCommande($this->genererNum->genererCom());
         $montantCom = $this->montant->calculMontantCommande($data);
         $data->setMontantCommande($montantCom);
+
      
         $this->entityManager->persist($data);
         $this->entityManager->flush();

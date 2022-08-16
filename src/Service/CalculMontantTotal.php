@@ -13,7 +13,8 @@ class CalculMontantTotal
       foreach ($commandes as $commande) {
         $montantTotal += $commande->getMontantCommande();
       }
-      return $montantTotal;
+      
+      $data->setMontantCommande($montantTotal);
     }
     
 }

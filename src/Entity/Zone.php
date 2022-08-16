@@ -70,7 +70,7 @@ class Zone
     private $commandes;
 
     #[ORM\OneToMany(mappedBy: 'zone', targetEntity: Quartier::class, cascade:['persist'])]
-    #[Groups(["zone:read:all","zone:write","zone:read:simple"])]
+    #[Groups(["zone:read:all","zone:write","zone:read:simple","com:write"])]
     #[Assert\Count(min:1,minMessage:'la zone doit avoir minimum un quartier')]
     private $quartiers;
 

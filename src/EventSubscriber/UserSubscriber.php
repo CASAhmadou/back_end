@@ -13,6 +13,7 @@ use Symfony\Component\Security\Http\Event\CheckPassportEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class UserSubscriber implements EventSubscriberInterface
@@ -52,20 +53,29 @@ class UserSubscriber implements EventSubscriberInterface
     }
     public function prePersist(LifecycleEventArgs $args)
     {
-        if ($args->getObject() instanceof Burger) {
-            $args->getObject()->setGestionnaire($this->getUser());
-        }
-        if ($args->getObject() instanceof Boisson) {
-            $args->getObject()->setGestionnaire($this->getUser());
-        }
-        if ($args->getObject() instanceof PortionFrite) {
-            $args->getObject()->setGestionnaire($this->getUser());
-        }
-        if ($args->getObject() instanceof Menu) {
-            $args->getObject()->setGestionnaire($this->getUser());
-        }
+        // if ($args->getObject() instanceof Burger) {
+        //     $args->getObject()->setGestionnaire($this->getUser());
+        // }
+        // if ($args->getObject() instanceof Boisson) {
+        //     $args->getObject()->setGestionnaire($this->getUser());
+        // }
+        // if ($args->getObject() instanceof PortionFrite) {
+        //     $args->getObject()->setGestionnaire($this->getUser());
+        // }
+        // if ($args->getObject() instanceof Menu) {
+        //     $args->getObject()->setGestionnaire($this->getUser());
+        // }
         if ($args->getObject() instanceof Commande) {
             $args->getObject()->setClient($this->getUser());
         }
+    }
+
+    /* fonction de recuperation de l utilisateur */
+    public function getAuthUser(AuthenticationSuccessEvent $auth){
+        
+        $user = $auth->getUser();
+        $token = $auth->getData();
+        // $token['id'] = $user->getId();
+        $auth->setData($token);
     }
 }

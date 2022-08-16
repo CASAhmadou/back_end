@@ -18,7 +18,7 @@ class Quartier
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["zone:read:all","zone:write","zone:read:simple"])]
+    #[Groups(["zone:read:all","zone:write","zone:read:simple","com:write"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -26,7 +26,7 @@ class Quartier
     #[Groups(["zone:read:all","zone:write","zone:read:simple"])]
     private $libelle;
 
-    #[ORM\ManyToOne(targetEntity: Zone::class, inversedBy: 'quartiers')]
+    #[ORM\ManyToOne(targetEntity: Zone::class, inversedBy: 'quartiers', cascade:['persist'])]
     #[ORM\JoinColumn(nullable: true)]
     private $zone;
 
