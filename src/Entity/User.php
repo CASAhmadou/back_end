@@ -39,12 +39,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank(message:'le nom ne doit pas etre vide')]
-    #[Groups(["burger:read:all","user:read:simple","livreur:read:all"])]
+    #[Groups(["burger:read:all","user:read:simple","livreur:read:all","com:read:all","com:write","livraison:write","livraison:read:simple","livraison:read:all"])]
     protected $nom;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank(message:'le prenom ne doit pas etre vide')]
-    #[Groups(["burger:read:all","user:read:simple","livreur:read:all"])]
+    #[Groups(["burger:read:all","user:read:simple","livreur:read:all","com:read:all","com:write","livraison:write","livraison:read:simple","livraison:read:all"])]
     protected $prenom;
 
     #[ORM\Column(type: 'boolean')]

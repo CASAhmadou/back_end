@@ -64,7 +64,7 @@ class UserSubscriber implements EventSubscriberInterface
         // }
         // if ($args->getObject() instanceof Menu) {
         //     $args->getObject()->setGestionnaire($this->getUser());
-        // }
+        //}
         if ($args->getObject() instanceof Commande) {
             $args->getObject()->setClient($this->getUser());
         }

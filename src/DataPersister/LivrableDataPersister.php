@@ -38,6 +38,7 @@ class LivrableDataPersister implements DataPersisterInterface
     {
         $montantTo = $this->montant->CalculMontant($data);
         $data->setMontantTotal($montantTo);
+        $data->getLivreur()->setEtat("indisponible");
      
         $this->entityManager->persist($data);
         $this->entityManager->flush();

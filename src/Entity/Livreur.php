@@ -30,8 +30,6 @@ use Symfony\Component\HttpFoundation\Response;
 )]
 class Livreur extends User
 {
-
-
     #[ORM\Column(type: 'string', length: 255)]
     #[Groups(["livreur:read:simple","livreur:read:all"])]
     private $matriculeMoto;

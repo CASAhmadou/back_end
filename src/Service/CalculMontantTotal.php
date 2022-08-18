@@ -11,10 +11,11 @@ class CalculMontantTotal
       $montantTotal = 0;
       $commandes = $data->getCommandes(); 
       foreach ($commandes as $commande) {
+        $commande->setEtat('enCoursDeLivraison');
         $montantTotal += $commande->getMontantCommande();
       }
       
-      $data->setMontantCommande($montantTotal);
+      $data->$montantTotal;
     }
     
 }
