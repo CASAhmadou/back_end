@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
     collectionOperations:[
         "get"=>[
             'normalization_context' => ['groups' => ['com:read:all']],
-            "security" => "is_granted('COMMANDE_ALL',_api_resource_class)", 
+            // "security" => "is_granted('COMMANDE_ALL',_api_resource_class)", 
         ],
         "post_register" => [
             "security_post_denormalize" => "is_granted('COMMANDE_CREATE', object)",
@@ -26,9 +26,10 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
             'normalization_context' => ['groups' => ['com:read:simple']],
             'denormalization_context' => ['groups' => ['com:write']]
         ]
-        ],itemOperations:["patch"=>[
-            "security" => "is_granted('COMMANDE_EDIT', object)" ,
+        ],itemOperations:["put"=>[
+            
         ],
+        
             "get"=>[
                 'method' => 'get',
                 'status' => Response::HTTP_OK,
@@ -41,11 +42,11 @@ class Commande
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["com:read:simple","com:read:all","livraison:write"])]
+    #[Groups(["com:read:simple","com:read:all","livraison:write","livraison:read:all"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(["com:read:simple","com:read:all","com:write"])]
+    #[Groups(["com:read:simple","com:read:all","com:write","livraison:write"])]
     private $numeroCommande;
 
     #[ORM\Column(type: 'datetime')]

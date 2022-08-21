@@ -25,6 +25,9 @@ services:
             - { name: doctrine.event_listener, event: prePersist}
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: getAuthUser}
 
+    App\DataPersister\LivraisonDataPersister: ~
+            # Uncomment only if autoconfiguration is disabled
+            #tags: [ 'api_platform.data_persister' ]
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

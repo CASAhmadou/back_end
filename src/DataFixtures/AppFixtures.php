@@ -46,7 +46,7 @@ class AppFixtures extends Fixture
 
         $user3=new Client();
         $user3->setLogin('client1@gmail.com');
-        $user3->setNom('Dem');
+        $user3->setNom('Deme');
         $user3->setPrenom('Abdoulaye');
         $user3->setAdresse("Thiaroye");
         $user3->setTelephone("701234567");

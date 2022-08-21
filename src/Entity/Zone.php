@@ -52,12 +52,12 @@ class Zone
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["zone:read:all","zone:write","quartier:write","zone:read:simple","quartier:read:simple","com:write"])]
+    #[Groups(["zone:read:all","zone:write","quartier:write","zone:read:simple","quartier:read:simple","com:write","com:read:all"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\NotBlank(message:'le libelle de la zone ne doit pas etre vide')]
-    #[Groups(["zone:read:all","zone:write","zone:read:simple","quartier:read:simple","quartier:read:all","com:write"])]
+    #[Groups(["zone:read:all","zone:write","zone:read:simple","quartier:read:simple","quartier:read:all","com:write","com:read:all"])]
     private $libelle;
 
     #[ORM\Column(type: 'float')]

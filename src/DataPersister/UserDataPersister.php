@@ -44,7 +44,7 @@ class UserDataPersister implements DataPersisterInterface
         elseif($data instanceof Livreur){
             $data->setRoles(["ROLE_LIVREUR"]);
         }
-        $data->setExpiredAt(new \DateTime('+1 days'));
+        $data->setExpiredAt(new \DateTime('+5 days'));
         $this->entityManager->persist($data);
         $this->entityManager->flush();
         $this->mailer->sendEmail($data->getLogin(), $data->getToken());

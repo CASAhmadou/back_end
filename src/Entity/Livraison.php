@@ -15,13 +15,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
     collectionOperations:[
         "get"=>[
             'normalization_context' => ['groups' => ['livraison:read:all']],
-            "security" => "is_granted('LIVRAISON_ALL',_api_resource_class)", 
+            // "security" => "is_granted('LIVRAISON_ALL',_api_resource_class)", 
         ],
         "post_register" => [
             "security_post_denormalize" => "is_granted('LIVRAISON_CREATE', object)",
             "method"=>"post",
             'normalization_context' => ['groups' => ['livraison:read:simple']],
-            'denormalization_context' => ['groups' => ['livraison:write']]
+            // 'denormalization_context' => ['groups' => ['livraison:write']]
         ]
         ],itemOperations:["put"=>[
             "security" => "is_granted('LIVRAISON_EDIT', object)" ,
@@ -42,14 +42,14 @@ class Livraison
     private $id;
 
     #[ORM\Column(type: 'float')]
-    #[Groups(["livraison:write","livraison:read:simple","livraison:read:all"])]
+    #[Groups(["livraison:read:simple","livraison:read:all"])]
     private $montantTotal;
 
     #[ORM\ManyToOne(targetEntity: Livreur::class, inversedBy: 'livraisons')]
     #[Groups(["livraison:write","livraison:read:simple","livraison:read:all"])]
     private $livreur;
 
-    #[ORM\OneToMany(mappedBy: 'livraison', targetEntity: Commande::class)]
+    #[ORM\OneToMany(mappedBy: 'livraison', targetEntity: Commande::class, cascade:['persist'])]
     #[Groups(["livraison:write","livraison:read:simple","livraison:read:all"])]
     private $commandes;
 

@@ -42,7 +42,7 @@ class Livreur extends User
     #[Groups(["livreur:read:all"])]
     private $etat="disponible";
 
-    #[ORM\OneToMany(mappedBy: 'livreur', targetEntity: Livraison::class)]
+    #[ORM\OneToMany(mappedBy: 'livreur', targetEntity: Livraison::class, cascade:['persist'])]
     private $livraisons;
 
     public function __construct()

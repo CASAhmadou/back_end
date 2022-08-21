@@ -15,7 +15,7 @@ class CalculMontantTotal
         $montantTotal += $commande->getMontantCommande();
       }
       
-      $data->$montantTotal;
+      return $montantTotal;
     }
     
 }
