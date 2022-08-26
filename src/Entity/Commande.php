@@ -77,7 +77,7 @@ class Commande
     private $zone;
 
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: BurgerCommande::class,cascade:['persist'])]
-    #[Groups(["com:read:simple","com:read:all","com:write"])]
+    #[Groups(["com:read:simple","com:read:all","com:write","livraison:read:all"])]
     #[Assert\Valid]
     private $burgerCommandes;
 

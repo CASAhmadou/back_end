@@ -7,6 +7,7 @@ use App\Repository\LivraisonRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\HttpFoundation\Response;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -14,14 +15,16 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     collectionOperations:[
         "get"=>[
+            'method' => 'get',
+            'status' => Response::HTTP_OK,
             'normalization_context' => ['groups' => ['livraison:read:all']],
             // "security" => "is_granted('LIVRAISON_ALL',_api_resource_class)", 
         ],
         "post_register" => [
-            "security_post_denormalize" => "is_granted('LIVRAISON_CREATE', object)",
+            // "security_post_denormalize" => "is_granted('LIVRAISON_CREATE', object)",
             "method"=>"post",
             'normalization_context' => ['groups' => ['livraison:read:simple']],
-            // 'denormalization_context' => ['groups' => ['livraison:write']]
+            'denormalization_context' => ['groups' => ['livraison:write']]
         ]
         ],itemOperations:["put"=>[
             "security" => "is_granted('LIVRAISON_EDIT', object)" ,
@@ -51,6 +54,7 @@ class Livraison
 
     #[ORM\OneToMany(mappedBy: 'livraison', targetEntity: Commande::class, cascade:['persist'])]
     #[Groups(["livraison:write","livraison:read:simple","livraison:read:all"])]
+    #[ApiSubresource]
     private $commandes;
 
     #[ORM\Column(length: 255, nullable: true)]

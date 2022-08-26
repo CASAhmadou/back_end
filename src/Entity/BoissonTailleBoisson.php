@@ -17,7 +17,7 @@ class BoissonTailleBoisson
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["com:write","detail"])]
+    #[Groups(["com:write","detail","com:read:all"])]
     private $id;
 
     #[ORM\Column(type: 'integer')]
@@ -25,11 +25,11 @@ class BoissonTailleBoisson
     private $stock;
 
     #[ORM\ManyToOne(targetEntity: Boisson::class, inversedBy: 'boissonTailleBoissons')]
-    #[Groups("detail")]
+    #[Groups("detail","com:read:all")]
     private $boisson;
 
     #[ORM\ManyToOne(targetEntity: TailleBoisson::class, inversedBy: 'boissonTailleBoissons')]
-    #[Groups(["burger:read:all","write:boisson","burger:read:simple"])]
+    #[Groups(["burger:read:all","write:boisson","burger:read:simple","com:read:all"])]
     private $tailleBoisson;
 
     #[ORM\OneToMany(mappedBy: 'boissonTailleBoisson', targetEntity: BoissonCommande::class)]

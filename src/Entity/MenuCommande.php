@@ -14,11 +14,11 @@ class MenuCommande
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(["com:write"])]
+    #[Groups(["com:write","com:read:all"])]
     private $id;
 
     #[ORM\Column(type: 'integer')]
-    #[Groups(["com:write"])]
+    #[Groups(["com:write","com:read:all"])]
     #[Assert\Positive(message:'la quantite doit etre egal au moins a 1')]
     private $quantite=1;
 
@@ -26,7 +26,7 @@ class MenuCommande
     private $prix;
 
     #[ORM\ManyToOne(targetEntity: Menu::class, inversedBy: 'menuCommandes', cascade:['persist'])]
-    #[Groups(["com:write","com:read:simple"])]
+    #[Groups(["com:write","com:read:simple","com:read:all"])]
     private $menu;
 
     #[ORM\ManyToOne(targetEntity: Commande::class, inversedBy: 'menuCommandes')]

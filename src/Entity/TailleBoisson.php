@@ -49,11 +49,11 @@ class TailleBoisson
     private $id;
 
     #[ORM\Column(type: 'integer')]
-    #[Groups(["burger:read:simple","burger:read:all","write","complement:read:simple","detail"])]
+    #[Groups(["burger:read:simple","burger:read:all","write","complement:read:simple","detail","com:read:all"])]
     private $prix;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(["burger:read:simple","burger:read:all","write","complement:read:simple","detail"])]
+    #[Groups(["burger:read:simple","burger:read:all","write","complement:read:simple","detail","com:read:all"])]
     private $libelle;
 
 

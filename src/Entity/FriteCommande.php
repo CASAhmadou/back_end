@@ -20,7 +20,7 @@ class FriteCommande
     private $id;
 
     #[ORM\Column(type: 'integer')]
-    #[Groups(["com:write"])]
+    #[Groups(["com:write","com:read:all"])]
     #[Assert\Positive(message:'la quantite doit etre egal au moins a 1')]
     private $quantite=1;
 
@@ -28,7 +28,7 @@ class FriteCommande
     private $commande;
 
     #[ORM\ManyToOne(targetEntity: PortionFrite::class, inversedBy: 'friteCommandes')]
-    #[Groups(["com:write","com:read:simple"])]
+    #[Groups(["com:write","com:read:simple","com:read:all"])]
     private $portionFrite;
 
     #[ORM\Column(type: 'float')]
