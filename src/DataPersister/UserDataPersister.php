@@ -8,11 +8,7 @@ use App\Entity\Livreur;
 use App\Service\Mailer;
 use App\Service\PasswordHasher;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class UserDataPersister implements DataPersisterInterface
 {

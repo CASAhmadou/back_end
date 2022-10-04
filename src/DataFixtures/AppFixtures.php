@@ -20,29 +20,29 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // $user=new Client();
-        // $user->setLogin('client@gmail.com');
-        // $user->setNom('Sakho');
-        // $user->setPrenom('Dieyna');
-        // $user->setAdresse("Dakar");
-        // $user->setTelephone("762208564");
-        // $hashedPassword = $this->passwordHasher->hashPassword(
-        // $user,
-        // 'cas'
-        // );
-        // $user->setPassword($hashedPassword);
-        // $user->setRoles(['ROLE_CLIENT']);
-
-        $user2=new Gestionnaire();
-        $user2->setLogin('gestionnaire1@gmail.com');
-        $user2->setNom('Sarr');
-        $user2->setPrenom('Bintou');
+        $user=new Client();
+        $user->setLogin('client@gmail.com');
+        $user->setNom('Sakho');
+        $user->setPrenom('Dieynaba');
+        $user->setAdresse("Dakar");
+        $user->setTelephone("762208564");
         $hashedPassword = $this->passwordHasher->hashPassword(
-        $user2,
+        $user,
+        'client'
+        );
+        $user->setPassword($hashedPassword);
+        $user->setRoles(['ROLE_CLIENT']);
+
+        $user1=new Gestionnaire();
+        $user1->setLogin('gestionnaire@gmail.com');
+        $user1->setNom('Sakho');
+        $user1->setPrenom('CAS');
+        $hashedPassword = $this->passwordHasher->hashPassword(
+        $user1,
         'gestionnaire'
         );
-        $user2->setPassword($hashedPassword);
-        $user2->setRoles(['ROLE_GESTIONNAIRE']);
+        $user1->setPassword($hashedPassword);
+        $user1->setRoles(['ROLE_GESTIONNAIRE']);
 
         $user3=new Client();
         $user3->setLogin('client1@gmail.com');
@@ -50,7 +50,7 @@ class AppFixtures extends Fixture
         $user3->setPrenom('Abdoulaye');
         $user3->setAdresse("Thiaroye");
         $user3->setTelephone("701234567");
-        $has3dPassword = $this->passwordHasher->hashPassword(
+        $hashedPassword = $this->passwordHasher->hashPassword(
         $user3,
         'client'
         );
@@ -59,8 +59,8 @@ class AppFixtures extends Fixture
 
         $user4=new Livreur();
         $user4->setLogin('livreur@gmail.com');
-        $user4->setNom('Ndiaye');
-        $user4->setPrenom('Abdoulaye');
+        $user4->setNom('Ba');
+        $user4->setPrenom('Aminata');
         $user4->setMatriculeMoto('L00123');
         $user4->setTelephone('750120786');
         $hash4dPassword = $this->passwordHasher->hashPassword(
@@ -82,7 +82,8 @@ class AppFixtures extends Fixture
         );
         $user5->setPassword($hashedPassword);
         $user5->setRoles(['ROLE_LIVREUR']);
-        $manager->persist($user2);
+        
+        $manager->persist($user1);
         $manager->persist($user3);
         $manager->persist($user4);
         $manager->persist($user5);
